@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<title>Gerador de Certificados</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+	</head>
+	<body>
+		<form id="gerar_certificados" class="form-horizontal">
+			<fieldset>
+
+			<!-- Form Name -->
+			<legend>Gerador de Certificados</legend>
+
+			<!-- Select Basic -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="seleciona_base"></label>
+			  <div class="col-md-4">
+				<select id="seleciona_base" name="seleciona_base" class="form-control">
+				  <option value="1">CONTENDA</option>
+				  <option value="2">JUIQUIÁ</option>
+				  <option value="3">ALM. TAMANDARE</option>
+				  <option value="4">F.R.G</option>
+				</select>
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="nome_curso"></label>  
+			  <div class="col-md-4">
+			  <input id="nome_curso" name="nome_curso" placeholder="Nome do Curso" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="carga_curso"></label>  
+			  <div class="col-md-4">
+			  <input id="carga_curso" name="carga_curso" placeholder="Carga Horária" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="local_e_data"></label>  
+			  <div class="col-md-4">
+			  <input id="local_e_data" name="local_e_data" placeholder="Local e Data ( ex: Fazenda Rio Grande, 21 de Agosto de 2015 )" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="nome_assinatura_1"></label>  
+			  <div class="col-md-4">
+			  <input id="nome_assinatura_1" name="nome_assinatura_1" placeholder="Nome Assinatura 1" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>			
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="cargo_assinatura_1"></label>  
+			  <div class="col-md-4">
+			  <input id="cargo_assinatura_1" name="cargo_assinatura_1" placeholder="Cargo Assinatura 1" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="nome_assinatura_2"></label>  
+			  <div class="col-md-4">
+			  <input id="nome_assinatura_2" name="nome_assinatura_2" placeholder="Nome Assinatura 2" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>		
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="cargo_assinatura_2"></label>  
+			  <div class="col-md-4">
+			  <input id="cargo_assinatura_2" name="cargo_assinatura_2" placeholder="Cargo Assinatura 2" class="form-control input-md" required="" type="text">
+				
+			  </div>
+			</div>			
+
+			<!-- Textarea -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="lista_aluno"></label>
+			  <div class="col-md-4">                     
+				<textarea class="form-control" id="lista_aluno" name="lista_aluno">Nome1,Nome2,Nome3,Nome4,Nome5...</textarea>
+			  </div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="botao_sucesso"></label>
+			  <div class="col-md-4">
+				<button style="float: right; width: 100%;" type="submit" id="botao_sucesso" name="botao_sucesso" class="btn btn-success">Enviar</button>
+			  </div>
+			</div>
+
+			</fieldset>
+		</form>
+	</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+// --------------------------------------------------
+// ENVIA O REQUEST PARA GERAR OS CERTIFICADOS
+// --------------------------------------------------
+$(function() { //shorthand document.ready function
+    $('#gerar_certificados').on('submit', function(e) { //use on if jQuery 1.7+
+		// PEGA OS DADOS DO FORM
+		var nome_curso = $('#nome_curso').val();
+		var carga_horaria = $('#carga_curso').val();
+		var local_e_data = $('#local_e_data').val();
+		var nome_assinatura_1 = $('#nome_assinatura_1').val();
+		var cargo_assinatura_1 = $('#cargo_assinatura_1').val();
+		var nome_assinatura_2 = $('#nome_assinatura_2').val();
+		var cargo_assinatura_2 = $('#cargo_assinatura_2').val();
+		
+		var lista_nomes = $('#lista_aluno').val();
+		
+		var valores = document.getElementById('seleciona_base');
+
+		function alinha_nome(nome) {
+			var nome_aluno_limpo = nome;
+			var count = parseInt(nome.length, 10);
+			if (count <= 30) {
+				var diferenca = 30 - count;
+				var loops = diferenca / 2;
+				var novo_nome = nome_aluno_limpo;
+				for(var i = 0; i < loops; i++) {
+					var nome_temp = novo_nome;
+					var novo_nome = ' '+nome_temp;
+				}
+				return novo_nome;
+			} else {
+				return nome;
+			}
+		}
+			
+		/*
+		/ SUMÁRIO
+		/ 0 = Contenda
+		/ 1 = Juquiá
+		/ 2 = Alm. Tamandare
+		/ 3 = F.R.G
+		*/
+		if (valores.selectedIndex == 0) {
+			var base = '&base=./bases/certificado_contenda.jpg';
+		}
+		if (valores.selectedIndex == 1) {
+			var base = '&base=./bases/certificado_juquia.jpg';
+		}
+		if (valores.selectedIndex == 2) {
+			var base = '&base=./bases/certificado_almirante_tamandare.jpg';
+		}
+		if (valores.selectedIndex == 3) {
+			var base = '&base=./bases/certificado_f-r-g.jpg';
+		}
+		
+		// SEPARA A LISTA DE NOMES E FAZ O LOOP
+		var str_array = lista_nomes.split(',');
+		for(var i = 0; i < str_array.length; i++) {
+			
+			var nome_aluno_limpo = str_array[i];
+
+			var novo_nome = alinha_nome(str_array[i]);
+			var nome_assinatura_1 = alinha_nome(nome_assinatura_1);
+			var cargo_assinatura_1 = alinha_nome(cargo_assinatura_1);
+			var nome_assinatura_2 = alinha_nome(nome_assinatura_2);
+			var cargo_assinatura_2 = alinha_nome(cargo_assinatura_2);
+
+			// FAZ O REQUEST PARA BAIXAR AS IMAGENS
+			//alert('APERTE "ENTER" PARA CONTINUAR...');
+			window.open('./gerador_de_certificados.php?nome='+novo_nome+'&nome_curso='+nome_curso+'&carga_horaria='+carga_horaria+'&local_e_data='+local_e_data+'&nome_assinatura_1='+nome_assinatura_1+'&cargo_assinatura_1='+cargo_assinatura_1+'&nome_assinatura_2='+nome_assinatura_2+'&cargo_assinatura_2='+cargo_assinatura_2+'&nome_aluno_limpo='+nome_aluno_limpo+base);
+		}
+    });
+});
+
+
+// NÃO ESQUECER
+// - CRIAR FUNÇÃO PARA ALINHA O TEXTO
+// - ARRUMAR AS BASES DOS CERTIFICADOS
+</script>
+</html>
