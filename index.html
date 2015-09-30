@@ -6,85 +6,83 @@
 		<link rel="stylesheet" href="./css/bootstrap.min.css"> 
 		<link rel="stylesheet" href="./css/style.css"> 
 	</head>
-	
 <body>
-<div class="panel panel-default">
-	<div class="container">
-		<div id="content">
-			<ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
-				<li><a href="#QUERY" data-toggle="tab">GERAR QUERY</a></li>
-				<li><a href="#SQL" data-toggle="tab">ENVIAR .SQL</a></li>
-				<li><a href="#AUTOMATICO" data-toggle="tab">TROCA AUTOMÁTICO</a></li>
-			</ul>
-			<div id="my-tab-content" class="tab-content">
-				<div class="tab-pane active" id="QUERY">
-					<h1>GERAR QUERY</h1>
-					<hr>
-					<p>Esta opção ira gerar uma query pronta para ser executada no banco de dados no qual os links serão substituidos, é de extrema importância que os dados do formulário sejam preenchidos com cautela e atenção, qualquer dados errado poderá destruir seu banco de dados. <br /><strong>Faça backup antes de ultilizar a query.</strong></p>
-					<br />
-					<form id="gerar-query" class="form-horizontal">
-						<fieldset>
+	<div class="panel panel-default">
+		<div class="container">
+			<div id="content">
+				<ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+					<li><a href="#QUERY" data-toggle="tab">GERAR QUERY</a></li>
+					<li><a href="#SQL" data-toggle="tab">ENVIAR .SQL</a></li>
+					<li><a href="#AUTOMATICO" data-toggle="tab">TROCA AUTOMÁTICO</a></li>
+				</ul>
+				<div id="my-tab-content" class="tab-content">
+					<div class="tab-pane active" id="QUERY">
+						<h1>GERAR QUERY</h1>
+						<hr>
+						<p>Esta opção ira gerar uma query pronta para ser executada no banco de dados no qual os links serão substituidos, é de extrema importância que os dados do formulário sejam preenchidos com cautela e atenção, qualquer dados errado poderá destruir seu banco de dados. <br /><strong>Faça backup antes de ultilizar a query.</strong></p>
+						<br />
+						<form id="gerar-query" class="form-horizontal">
+							<fieldset>
 
-						<!-- Text input-->
-						<div class="form-group">
-						  <label class="col-md-4 control-label" for="url_antiga">LINK ANTIGO</label>  
-						  <div class="col-md-5">
-						  <input id="url_antiga" name="url_antiga" placeholder="Link Antigo" class="form-control input-md" required="" type="text">
-							
-						  </div>
-						</div>
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="url_antiga">LINK ANTIGO</label>  
+							  <div class="col-md-5">
+							  <input id="url_antiga" name="url_antiga" placeholder="Link Antigo" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
 
-						<!-- Text input-->
-						<div class="form-group">
-						  <label class="col-md-4 control-label" for="url_nova">LINK ANTIGO</label>  
-						  <div class="col-md-5">
-						  <input id="url_nova" name="url_nova" placeholder="Link Novo" class="form-control input-md" required="" type="text">
-							
-						  </div>
-						</div>
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="url_nova">LINK ANTIGO</label>  
+							  <div class="col-md-5">
+							  <input id="url_nova" name="url_nova" placeholder="Link Novo" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
 
-						<!-- Button (Double) -->
-						<div class="form-group">
-						  <label class="col-md-4 control-label" for="reset"></label>
-						  <div class="col-md-8">
-							<button id="reset" name="reset" class="btn btn-danger">Limpar</button>
-							<button id="enviar" name="enviar" class="btn btn-success">Gerar</button>
-						  </div>
-						</div>
+							<!-- Button (Double) -->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="reset"></label>
+							  <div class="col-md-8">
+								<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+								<button id="enviar" name="enviar" class="btn btn-success">Gerar</button>
+							  </div>
+							</div>
 
-						</fieldset>
-					</form>
-					<!-- MODAL PARA MOSTRAR O QUERY GERADA -->
-					<div class="modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<!-- CABEÇALHO MODAL -->
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabel">Resultado:</h4>
+							</fieldset>
+						</form>
+						<!-- MODAL PARA MOSTRAR O QUERY GERADA -->
+						<div class="modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<!-- CABEÇALHO MODAL -->
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="myModalLabel">Resultado:</h4>
+									</div>
+									<!-- CORPO DO MODAL -->
+									<div class="modal-body"><pre><code id="mostra-resultado"></code></pre></div>
 								</div>
-								<!-- CORPO DO MODAL -->
-								<div class="modal-body"><pre><code id="mostra-resultado"></code></pre></div>
 							</div>
 						</div>
+						
 					</div>
-					
-				</div>
-				<div class="tab-pane" id="SQL">
-					<h1>ENVIAR .SQL</h1>
-					<hr>
-					<p>Em construção...</p>
-				</div>
-				<div class="tab-pane" id="AUTOMATICO">
-					<h1>AUTOMÁTICO</h1>
-					<hr>
-					<p>Em construção...</p>
+					<div class="tab-pane" id="SQL">
+						<h1>ENVIAR .SQL</h1>
+						<hr>
+						<p>Em construção...</p>
+					</div>
+					<div class="tab-pane" id="AUTOMATICO">
+						<h1>AUTOMÁTICO</h1>
+						<hr>
+						<p>Em construção...</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
 </body>
 	
 <!-- SCRIPTs -->
@@ -104,9 +102,15 @@ $(function() {
 		var url_antiga = $('#url_antiga').val();
 		var url_nova = $('#url_nova').val();
 
-		var resultado = 'zikuydio';
-		mostra_resultado(resultado);
+		var query_1 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'home' OR option_name = 'siteurl';";
+		var query_2 = "UPDATE wp_posts SET guid = replace(guid, '"+url_antiga+"','"+url_nova+"');";
+		var query_3 = "UPDATE wp_posts SET post_content = replace(post_content, '"+url_antiga+"', '"+url_nova+"');";
+		var query_4 = "UPDATE wp_postmeta SET meta_value = replace(meta_value,'"+url_antiga+"','"+url_nova+"');";
+		var query_5 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'Jupiter_options';";
 		
+		var resultado = query_1+query_2+query_3+query_4+query_5;
+		
+		mostra_resultado(resultado);
 		//window.open('./gerador_de_certificados.php?nome='+novo_nome+'&nome_curso='+nome_curso+'&carga_horaria='+carga_horaria+'&local_e_data='+local_e_data+'&nome_assinatura_1='+nome_assinatura_1+'&cargo_assinatura_1='+cargo_assinatura_1+'&nome_assinatura_2='+nome_assinatura_2+'&cargo_assinatura_2='+cargo_assinatura_2+'&nome_aluno_limpo='+nome_aluno_limpo+base);
     });
 });
