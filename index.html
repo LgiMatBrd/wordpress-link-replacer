@@ -6,108 +6,47 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
 	</head>
 	<body>
-		<form id="gerar_certificados" class="form-horizontal">
-			<fieldset>
+	
+	<div style="padding: 2% 5% 30%; background-color: rgb(35, 35, 35);" class="panel panel-default">
+<div style="background-color: rgb(255, 255, 255); width: 100% ! important; padding: 1%; border-radius: 8px; box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.75);" class="container">
+<div id="content">
+    <ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+        <li><a href="#SELECT" data-toggle="tab">GERAR SELECT</a></li>
+        <li><a href="#SQL" data-toggle="tab">ENVIAR .SQL</a></li>
+        <li><a href="#AUTOMATICO" data-toggle="tab">TROCA AUTOMÁTICO</a></li>
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="SELECT">
+            <h1>GERAR SELECT</h1>
+			<hr>
+            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+        </div>
+        <div class="tab-pane" id="SQL">
+            <h1>ENVIAR .SQL</h1>
+			<hr>
+            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+        </div>
+        <div class="tab-pane" id="AUTOMATICO">
+            <h1>AUTOMÁTICO</h1>
+			<hr>
+            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+        </div>
+    </div>
+</div>
 
-			<!-- Form Name -->
-			<legend>Gerador de Certificados</legend>
 
-			<!-- Select Basic -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="seleciona_base"></label>
-			  <div class="col-md-4">
-				<select id="seleciona_base" name="seleciona_base" class="form-control">
-				  <option value="1">CONTENDA</option>
-				  <option value="2">JUIQUIÁ</option>
-				  <option value="3">ALM. TAMANDARE</option>
-				  <option value="4">F.R.G</option>
-				</select>
-			  </div>
-			</div>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+</div> <!-- container -->
+</div>
 
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="nome_curso"></label>  
-			  <div class="col-md-4">
-			  <input id="nome_curso" name="nome_curso" placeholder="Nome do Curso" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="carga_curso"></label>  
-			  <div class="col-md-4">
-			  <input id="carga_curso" name="carga_curso" placeholder="Carga Horária" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="local_e_data"></label>  
-			  <div class="col-md-4">
-			  <input id="local_e_data" name="local_e_data" placeholder="Local e Data ( ex: Fazenda Rio Grande, 21 de Agosto de 2015 )" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="nome_assinatura_1"></label>  
-			  <div class="col-md-4">
-			  <input id="nome_assinatura_1" name="nome_assinatura_1" placeholder="Nome Assinatura 1" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>			
-			
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="cargo_assinatura_1"></label>  
-			  <div class="col-md-4">
-			  <input id="cargo_assinatura_1" name="cargo_assinatura_1" placeholder="Cargo Assinatura 1" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="nome_assinatura_2"></label>  
-			  <div class="col-md-4">
-			  <input id="nome_assinatura_2" name="nome_assinatura_2" placeholder="Nome Assinatura 2" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>		
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="cargo_assinatura_2"></label>  
-			  <div class="col-md-4">
-			  <input id="cargo_assinatura_2" name="cargo_assinatura_2" placeholder="Cargo Assinatura 2" class="form-control input-md" required="" type="text">
-				
-			  </div>
-			</div>			
-
-			<!-- Textarea -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="lista_aluno"></label>
-			  <div class="col-md-4">                     
-				<textarea class="form-control" id="lista_aluno" name="lista_aluno">Nome1,Nome2,Nome3,Nome4,Nome5...</textarea>
-			  </div>
-			</div>
-
-			<!-- Button -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="botao_sucesso"></label>
-			  <div class="col-md-4">
-				<button style="float: right; width: 100%;" type="submit" id="botao_sucesso" name="botao_sucesso" class="btn btn-success">Enviar</button>
-			  </div>
-			</div>
-
-			</fieldset>
-		</form>
 	</body>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 // --------------------------------------------------
 // ENVIA O REQUEST PARA GERAR OS CERTIFICADOS
