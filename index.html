@@ -2,51 +2,50 @@
 <html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8">
-		<title>Gerador de Certificados</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+		<title>WORDPRESS LINK REPLACER - SKORP</title>
+		<link rel="stylesheet" href="./css/bootstrap.min.css"> 
 		<link rel="stylesheet" href="./css/style.css"> 
 	</head>
-	<body>
 	
-	<div style="padding: 2% 5% 30%; background-color: rgb(35, 35, 35);" class="panel panel-default">
-<div style="background-color: rgb(255, 255, 255); width: 100% ! important; padding: 1%; border-radius: 8px; box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.75);" class="container">
-<div id="content">
-    <ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
-        <li><a href="#SELECT" data-toggle="tab">GERAR SELECT</a></li>
-        <li><a href="#SQL" data-toggle="tab">ENVIAR .SQL</a></li>
-        <li><a href="#AUTOMATICO" data-toggle="tab">TROCA AUTOMÁTICO</a></li>
-    </ul>
-    <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="SELECT">
-            <h1>GERAR SELECT</h1>
-			<hr>
-            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
-        </div>
-        <div class="tab-pane" id="SQL">
-            <h1>ENVIAR .SQL</h1>
-			<hr>
-            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
-        </div>
-        <div class="tab-pane" id="AUTOMATICO">
-            <h1>AUTOMÁTICO</h1>
-			<hr>
-            <p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
-        </div>
-    </div>
+<body>
+<div class="panel panel-default">
+	<div class="container">
+		<div id="content">
+			<ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+				<li><a href="#SELECT" data-toggle="tab">GERAR SELECT</a></li>
+				<li><a href="#SQL" data-toggle="tab">ENVIAR .SQL</a></li>
+				<li><a href="#AUTOMATICO" data-toggle="tab">TROCA AUTOMÁTICO</a></li>
+			</ul>
+			<div id="my-tab-content" class="tab-content">
+				<div class="tab-pane active" id="SELECT">
+					<h1>GERAR SELECT</h1>
+					<hr>
+					<p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+				</div>
+				<div class="tab-pane" id="SQL">
+					<h1>ENVIAR .SQL</h1>
+					<hr>
+					<p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+				</div>
+				<div class="tab-pane" id="AUTOMATICO">
+					<h1>AUTOMÁTICO</h1>
+					<hr>
+					<p>Gerador de SELECT pronto para ser ser executado no banco de dados.</p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+		$('#SELECT').tab();
+		});
+		</script>    
+	</div> <!-- container -->
 </div>
 
-
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('#tabs').tab();
-    });
-</script>    
-</div> <!-- container -->
-</div>
-
-	</body>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+	
+<!-- SCRIPTs -->
+<script type="text/javascript" src="./js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 // --------------------------------------------------
@@ -122,10 +121,5 @@ $(function() { //shorthand document.ready function
 		}
     });
 });
-
-
-// NÃO ESQUECER
-// - CRIAR FUNÇÃO PARA ALINHA O TEXTO
-// - ARRUMAR AS BASES DOS CERTIFICADOS
 </script>
 </html>

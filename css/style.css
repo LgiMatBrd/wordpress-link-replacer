@@ -22,6 +22,21 @@ body {
 	background-image: url('../img/background.jpg');
 }
 
+.painel {
+	padding: 2% 5% 30%; 
+	background-color: rgb(35, 35, 35);
+}
+
+.container {
+	background-color: rgb(255, 255, 255); 
+	width: 100% ! important; 
+	padding: 1%; 
+	border-radius: 8px; 
+	box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+
+
 /* NAVEGAÇÃO */
 .nav-tabs.nav-justified {
     background-color: #F76E1E;
