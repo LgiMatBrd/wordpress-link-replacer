@@ -54,7 +54,7 @@
 							</fieldset>
 						</form>
 						<!-- MODAL PARA MOSTRAR O QUERY GERADA -->
-						<div class="modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal fade" id="resultadoQuery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<!-- CABEÇALHO MODAL -->
@@ -67,24 +67,101 @@
 								</div>
 							</div>
 						</div>
-						
 					</div>
-					<!--<div class="tab-pane" id="SQL">
-						<h1>ENVIAR .SQL</h1>
-						<hr>
-						<p>Em construção...</p>
-					</div>-->
 					<div class="tab-pane" id="AUTOMATICO">
 						<h1>AUTOMÁTICO</h1>
 						<hr>
-						<p>Em construção...</p>
+						<p>Preencha abaixo os dados de acesso ao banco de dados que a ferramenta irá se encarregar de todo o trabalho pesado.</p>
+						<br />
+						<form id="form-automatico" class="form-horizontal">
+							<fieldset>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="url_antiga">LINK ANTIGO</label>  
+							  <div class="col-md-5">
+							  <input id="url_antiga" name="url_antiga" placeholder="http://linkantigo.com.br" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="url_nova">LINK NOVO</label>  
+							  <div class="col-md-5">
+							  <input id="url_nova" name="url_nova" placeholder="http://linknovo.com.br" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="host">HOST</label>  
+							  <div class="col-md-5">
+							  <input id="host" name="host" placeholder="0.0.0.0" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="user">USUÁRIO</label>  
+							  <div class="col-md-5">
+							  <input id="user" name="user" placeholder="root" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="senha">SENHA</label>  
+							  <div class="col-md-5">
+							  <input id="senha" name="senha" placeholder="senha123" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="nome_banco">NOME DO BANCO</label>  
+							  <div class="col-md-5">
+							  <input id="nome_banco" name="nome_banco" placeholder="banco_nome" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Button (Double) -->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="reset"></label>
+							  <div class="col-md-8">
+								<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+								<button id="enviar" name="enviar" class="btn btn-success">Gerar</button>
+							  </div>
+							</div>
+
+							</fieldset>
+						</form>
+						<!-- MODAL PARA MOSTRAR O QUERY GERADA -->
+						<div class="modal fade" id="resultadoQuery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<!-- CABEÇALHO MODAL -->
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="myModalLabel">Resultado:</h4>
+									</div>
+									<!-- CORPO DO MODAL -->
+									<div class="modal-body"><pre><code id="mostra-resultado"></code></pre></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-	
+
 <!-- SCRIPTs -->
 <script type="text/javascript" src="./js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -92,8 +169,9 @@
 jQuery(document).ready(function ($) {
 	$('#QUERY').tab();
 });
+
 // --------------------------------------------------
-// GERA O QUERY
+// RECEBE OS DADOS E GERA A QUERY
 // --------------------------------------------------
 $(function() {
     $('#gerar-query').on('submit', function(e) { 
@@ -107,15 +185,65 @@ $(function() {
 		var query_3 = "UPDATE wp_posts SET post_content = replace(post_content, '"+url_antiga+"', '"+url_nova+"');";
 		var query_4 = "UPDATE wp_postmeta SET meta_value = replace(meta_value,'"+url_antiga+"','"+url_nova+"');";
 		var query_5 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'Jupiter_options';";
-		
 		var resultado = query_1+query_2+query_3+query_4+query_5;
 		
-		mostra_resultado(resultado);
-		//window.open('./gerador_de_certificados.php?nome='+novo_nome+'&nome_curso='+nome_curso+'&carga_horaria='+carga_horaria+'&local_e_data='+local_e_data+'&nome_assinatura_1='+nome_assinatura_1+'&cargo_assinatura_1='+cargo_assinatura_1+'&nome_assinatura_2='+nome_assinatura_2+'&cargo_assinatura_2='+cargo_assinatura_2+'&nome_aluno_limpo='+nome_aluno_limpo+base);
+		mostra_query(resultado);
     });
 });
+
 // --------------------------------------------------
-// MOSTRA O RESULTADO
+// EXIBE NA TELA A QUERY MONTADA
+// --------------------------------------------------
+function mostra_query(resultado) {
+	if(!resultado) {
+		document.getElementById("mostra-resultado").innerHTML = 'Erro ao gerar a query...';
+	} else {
+		document.getElementById("mostra-resultado").innerHTML = resultado;
+	}
+	$('#resultadoQuery').modal('show'); 
+}
+
+// --------------------------------------------------
+// RECEBE OS DADOS E ENVIA POR AJAX
+// --------------------------------------------------
+$(function() {
+    $('#form-automatico').on('submit', function(e) { 
+		e.preventDefault();
+		
+		// PEGA OS DADOS DO FORM
+		var url_antiga = $('#url_antiga').val();
+		var url_nova = $('#url_nova').val();
+		var host = $('#host').val();
+		var user = $('#user').val();
+		var senha = $('#senha').val();
+		var nome_banco = $('#nome_banco').val();
+		
+		// MONTA A QUERY
+		var query_1 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'home' OR option_name = 'siteurl';";
+		var query_2 = "UPDATE wp_posts SET guid = replace(guid, '"+url_antiga+"','"+url_nova+"');";
+		var query_3 = "UPDATE wp_posts SET post_content = replace(post_content, '"+url_antiga+"', '"+url_nova+"');";
+		var query_4 = "UPDATE wp_postmeta SET meta_value = replace(meta_value,'"+url_antiga+"','"+url_nova+"');";
+		var query_5 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'Jupiter_options';";
+		var query = query_1+query_2+query_3+query_4+query_5;
+
+		action = './controller/automatico.php';
+		var meuajax;
+		meuajax = 'acao=automatico&query='+query;
+		post = meuajax;
+		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+		$.postJSON(action, { ajax: meuajax }, Resultado);
+
+		function Resultado(dados)
+		{
+			alert(dados.ok);
+		}
+		
+		mostra_resultado(resultado);
+    });
+});
+
+// --------------------------------------------------
+// EXIBE NA TELA A QUERY MONTADA
 // --------------------------------------------------
 function mostra_resultado(resultado) {
 	if(!resultado) {
@@ -123,7 +251,7 @@ function mostra_resultado(resultado) {
 	} else {
 		document.getElementById("mostra-resultado").innerHTML = resultado;
 	}
-	$('#meuPerfil').modal('show'); 
+	$('#resultadoQuery').modal('show'); 
 }
 </script>
 </html>
