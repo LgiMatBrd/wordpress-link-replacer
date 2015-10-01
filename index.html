@@ -78,18 +78,18 @@
 
 							<!-- Text input-->
 							<div class="form-group">
-							  <label class="col-md-4 control-label" for="url_antiga">LINK ANTIGO</label>  
+							  <label class="col-md-4 control-label" for="url_antiga2">LINK ANTIGO</label>  
 							  <div class="col-md-5">
-							  <input id="url_antiga" name="url_antiga" placeholder="http://linkantigo.com.br" class="form-control input-md" required="" type="text">
+							  <input id="url_antiga2" name="url_antiga2" placeholder="http://linkantigo.com.br" class="form-control input-md" required="" type="text">
 								
 							  </div>
 							</div>
 
 							<!-- Text input-->
 							<div class="form-group">
-							  <label class="col-md-4 control-label" for="url_nova">LINK NOVO</label>  
+							  <label class="col-md-4 control-label" for="url_nova2">LINK NOVO</label>  
 							  <div class="col-md-5">
-							  <input id="url_nova" name="url_nova" placeholder="http://linknovo.com.br" class="form-control input-md" required="" type="text">
+							  <input id="url_nova2" name="url_nova2" placeholder="http://linknovo.com.br" class="form-control input-md" required="" type="text">
 								
 							  </div>
 							</div>
@@ -211,8 +211,8 @@ $(function() {
 		e.preventDefault();
 		
 		// PEGA OS DADOS DO FORM
-		var url_antiga = $('#url_antiga').val();
-		var url_nova = $('#url_nova').val();
+		var url_antiga = $('#url_antiga2').val();
+		var url_nova = $('#url_nova2').val();
 		var host = $('#host').val();
 		var user = $('#user').val();
 		var senha = $('#senha').val();
@@ -240,7 +240,11 @@ $(function() {
 // EXIBE NA TELA A QUERY MONTADA
 // --------------------------------------------------
 function mostra_resultado(resultado) {
-alert(resultado.ok);
+	if(resultado.ok) {
+		alert(resultado.ok);
+	} else {
+		alert(resultado.erro);
+	}
 }
 </script>
 </html>
