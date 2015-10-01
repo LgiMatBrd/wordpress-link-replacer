@@ -217,6 +217,7 @@ $(function() {
 		var user = $('#user').val();
 		var senha = $('#senha').val();
 		var nome_banco = $('#nome_banco').val();
+		var dados_ajax = '&host='+host+'&user='+user+'&senha='+senha+'&nome_banco='+nome_banco
 		
 		// MONTA A QUERY
 		var query_1 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'home' OR option_name = 'siteurl';";
@@ -228,17 +229,10 @@ $(function() {
 
 		action = './controller/automatico.php';
 		var meuajax;
-		meuajax = 'acao=automatico&query='+query;
+		meuajax = 'acao=automatico&query='+query+dados_ajax;
 		post = meuajax;
 		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
-		$.postJSON(action, { ajax: meuajax }, Resultado);
-
-		function Resultado(dados)
-		{
-			alert(dados.ok);
-		}
-		
-		mostra_resultado(resultado);
+		$.postJSON(action, { ajax: meuajax }, mostra_resultado);
     });
 });
 
@@ -246,12 +240,7 @@ $(function() {
 // EXIBE NA TELA A QUERY MONTADA
 // --------------------------------------------------
 function mostra_resultado(resultado) {
-	if(!resultado) {
-		document.getElementById("mostra-resultado").innerHTML = 'Erro ao gerar a query...';
-	} else {
-		document.getElementById("mostra-resultado").innerHTML = resultado;
-	}
-	$('#resultadoQuery').modal('show'); 
+alert(resultado.ok);
 }
 </script>
 </html>
