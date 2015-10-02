@@ -44,7 +44,7 @@ if ($AJAX['acao'] == 'automatico') {
 	}
 	else
 	{
-		print_r($_GET['callback'].'('.json_encode(array('erro' => $resultado), JSON_UNESCAPED_UNICODE).');');
+		print_r($_GET['callback'].'('.json_encode(array('erro' => 'Erro ao executar a query, verifique os dados informados.'), JSON_UNESCAPED_UNICODE).');');
 	}
 } else {
 	print_r($_GET['callback'].'('.json_encode(array('erro' => 'Erro interno, contate o desenvolvedor. COD: 001'), JSON_UNESCAPED_UNICODE).');');
