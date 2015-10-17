@@ -42,6 +42,28 @@
 							  </div>
 							</div>
 
+							<!-- Text input-->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="prefixo">PREFIXO DA TABELA</label>  
+							  <div class="col-md-5">
+							  <input id="prefixo" name="prefixo" value="wp_" class="form-control input-md" required="" type="text">
+								
+							  </div>
+							</div>
+
+							<!-- Multiple Checkboxes -->
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="checkboxes">Ative somente se você usa o Jupiter Theme</label>
+							  <div class="col-md-4">
+							  <div class="checkbox">
+								 <label for="checkboxes-0">
+									<input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
+									Sim, eu uso!
+								 </label>
+								</div>
+							  </div>
+							</div>
+
 							<!-- Button (Double) -->
 							<div class="form-group">
 							  <label class="col-md-4 control-label" for="reset"></label>
@@ -179,14 +201,20 @@ $(function() {
 		// PEGA OS DADOS DO FORM
 		var url_antiga = $('#url_antiga').val();
 		var url_nova = $('#url_nova').val();
+		var prefixo = $('#prefixo').val();
 
-		var query_1 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'home' OR option_name = 'siteurl';";
-		var query_2 = "UPDATE wp_posts SET guid = replace(guid, '"+url_antiga+"','"+url_nova+"');";
-		var query_3 = "UPDATE wp_posts SET post_content = replace(post_content, '"+url_antiga+"', '"+url_nova+"');";
-		var query_4 = "UPDATE wp_postmeta SET meta_value = replace(meta_value,'"+url_antiga+"','"+url_nova+"');";
-		var query_5 = "UPDATE wp_options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'Jupiter_options';";
-		var resultado = query_1+query_2+query_3+query_4+query_5;
-		
+		var query_1 = "UPDATE "+prefixo+"options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'home' OR option_name = 'siteurl';";
+		var query_2 = "UPDATE "+prefixo+"posts SET guid = replace(guid, '"+url_antiga+"','"+url_nova+"');";
+		var query_3 = "UPDATE "+prefixo+"posts SET post_content = replace(post_content, '"+url_antiga+"', '"+url_nova+"');";
+		var query_4 = "UPDATE "+prefixo+"postmeta SET meta_value = replace(meta_value,'"+url_antiga+"','"+url_nova+"');";
+
+		if($("#checkboxes-0").is(":checked")) {
+			var query_5 = "UPDATE "+prefixo+"options SET option_value = replace(option_value, '"+url_antiga+"', '"+url_nova+"') WHERE option_name = 'Jupiter_options';";
+			var resultado = query_1+query_2+query_3+query_4+query_5;
+		} else {
+			var resultado = query_1+query_2+query_3+query_4;
+		}
+
 		mostra_query(resultado);
     });
 });
